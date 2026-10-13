@@ -1,2 +1,1 @@
-# memory-card-game
-TBA
+# Palworld Memory Card Game
