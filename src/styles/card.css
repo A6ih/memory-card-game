@@ -1,0 +1,11 @@
+.card {
+    --standard-width: 215px;
+    --standard-height: 336px;
+    /*min w x h maybe */
+    /* width: 166px;
+    height: 226px; */
+    width: var(--standard-width);
+    height: var(--standard-height);
+    max-width: var(--standard-width);
+    max-height: var(--standard-height);
+}
