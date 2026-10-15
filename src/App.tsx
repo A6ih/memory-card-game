@@ -9,13 +9,11 @@ export type ResultProps = Result[] | null
 
 function App() {
     const [data, setData] = useState<ResultProps>(null);
-    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         const getData = async () => {
             const fetchedData = await filterApiResults();
             setData(fetchedData)
-            setIsLoading(false)
         }
         getData()
     }, [])
