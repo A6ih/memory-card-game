@@ -1,16 +1,15 @@
 import Card from "./Card";
+import type { ResultProps } from "../App";
+import "../styles/card-container.css"
 
-export type CardProps = {
-    name: string,
-    imgURL: string,
-    id: number,
-}
 
-export default function CardsContainer({data}: {data :CardProps[]}) {
+export default function CardsContainer({data}: {data :ResultProps}) {
+    if(!data) return <div className="loading">...Loading</div>
     return (
-        data.map((card =>
-                   <Card key={card.id} name={card.name} imgURL={card.imgURL} />
-                 )
+        <div className="card-container">
+            {data.map((card =>
+                   <Card key={card.id} imgUrl={card.imgUrl} id={card.id} name={card.name}/>
+                 ))}
+        </div>
      )
-    )
 }

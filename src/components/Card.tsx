@@ -1,11 +1,8 @@
-import type { CardProps } from "./CardsContainer";
+import type { Result } from "../helpers/apiFunctions"
 import "../styles/card.css"
 
-export default function Card({name, imgURL}:Omit<CardProps, "id">) {
+export default function Card({name, id, imgUrl}:Result) {
     return (
-        <div className="card">
-            <img className="card-img" src={imgURL} alt={name} />
-            <p className="card-name">{name}</p>
-        </div>
+        <img src={imgUrl} alt={name} className={`card ${id}`} />
     )
 }
