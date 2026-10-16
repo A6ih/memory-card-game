@@ -9,6 +9,8 @@ export type ResultProps = Result[] | null
 
 function App() {
     const [data, setData] = useState<ResultProps>(null);
+    const [score, setScore] = useState(0);
+    const [best, setBest] = useState(0);
     const [status, setStatus] = useState("ongoing")
 
     useEffect(() => {
@@ -20,14 +22,25 @@ function App() {
         getData()
     }, [])
 
-    console.log("start")
+    if(score > best) setBest(score)
 
-    if(status === "lost") return <h1>Game Over</h1>
-
+    const handleScore = () => setScore(score + 1)
+    const handleRestart = () => {
+        setStatus("ongoing")
+        setScore(0)
+    }
+    
     return (
         <>
-          <Header />
-          <CardsContainer data={data} handleStatus={setStatus}/>
+          <Header score={score} best={best}/>
+          {status === "ongoing" ? <CardsContainer data={data}
+                          handleStatus={setStatus}
+                          handleScore={handleScore}/> :
+                          <div>
+                           <h1>Game Over</h1>
+                           <button onClick={() => handleRestart()}>Restart</button>
+                         </div>
+          }  
         </>
     )
 }

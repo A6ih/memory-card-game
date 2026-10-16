@@ -1,4 +1,3 @@
-import type { Result } from "../helpers/apiFunctions"
 import "../styles/card.css"
 import handleCardClick from "../helpers/handleCardClick"
 
@@ -8,7 +7,8 @@ type CardProps = {
     imgUrl: string,
     handleStatus: (value:string) => void,
     handleClickedCards: (value: Set<string>) => void,
-    clickedCards: Set<string>
+    clickedCards: Set<string>,
+    handleScore: () => void
 }
 
 export default function Card({name,
@@ -16,7 +16,8 @@ export default function Card({name,
                               imgUrl,
                               handleStatus,
                               handleClickedCards,
-                              clickedCards} : CardProps) {
+                              clickedCards,
+                              handleScore} : CardProps) {
     return (
         <img src={imgUrl}
              alt={name}
@@ -24,6 +25,7 @@ export default function Card({name,
              onClick={() => handleCardClick(id,
                                             clickedCards,
                                             handleClickedCards,
-                                            handleStatus)} />
+                                            handleStatus,
+                                            handleScore)} />
     )
 }
