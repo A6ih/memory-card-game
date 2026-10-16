@@ -9,19 +9,25 @@ export type ResultProps = Result[] | null
 
 function App() {
     const [data, setData] = useState<ResultProps>(null);
+    const [status, setStatus] = useState("ongoing")
 
     useEffect(() => {
         const getData = async () => {
             const fetchedData = await filterApiResults();
             setData(fetchedData)
+            console.log("data-fetched")
         }
         getData()
     }, [])
 
+    console.log("start")
+
+    if(status === "lost") return <h1>Game Over</h1>
+
     return (
         <>
           <Header />
-          <CardsContainer data={data}/>
+          <CardsContainer data={data} handleStatus={setStatus}/>
         </>
     )
 }
