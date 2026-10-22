@@ -5,6 +5,7 @@ import type { Result } from "../helpers/apiFunctions";
 import "../styles/card-container.css"
 import shuffleData from "../helpers/shuffleData";
 import shortenDataArr from "../helpers/shortenDataArr";
+import CardTracker from "./CardTracker";
 
 type CardsContainerProps = {
                             data :ResultProps,
@@ -24,7 +25,8 @@ export default function CardsContainer({data, handleStatus, handleScore}: CardsC
     const shuffledData: Result[] = shuffleData(shortenDataArr(clickedCardsArr, cardsArr))
 
     return (
-        <div className="card-container">
+        <>
+         <div className="card-container">
             {shuffledData.map((card =>
                    <Card key={card.id}
                          imgUrl={card.imgUrl}
@@ -36,5 +38,7 @@ export default function CardsContainer({data, handleStatus, handleScore}: CardsC
                          handleScore={handleScore}/>
                  ))}
         </div>
+        <CardTracker score={clickedCards.size}/>
+        </>
      )
 }

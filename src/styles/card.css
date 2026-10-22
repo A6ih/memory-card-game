@@ -9,3 +9,8 @@
     max-width: var(--standard-width);
     max-height: var(--standard-height);
 }
+
+.card:hover {
+    box-shadow: 2px 2px 2px 2px red;
+    scale: 1.05;
+}
