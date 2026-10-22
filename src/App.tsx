@@ -35,7 +35,12 @@ function App() {
           <Header score={score} best={best}/>
           {status === "ongoing" ? <CardsContainer data={data}
                           handleStatus={setStatus}
-                          handleScore={handleScore}/> :
+                          handleScore={handleScore}/> : 
+                          status === "won" ? 
+                          <div>
+                           <h1>You Won</h1>
+                           <button onClick={() => handleRestart()}>Restart</button>
+                         </div> :
                           <div>
                            <h1>Game Over</h1>
                            <button onClick={() => handleRestart()}>Restart</button>
