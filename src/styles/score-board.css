@@ -1,0 +1,17 @@
+.score-board {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+    background-color: #d1861a;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.score-board p {
+    width: 75px;
+    margin: 2px;
+    display: flex;
+    justify-content: space-between;
+    text-shadow: 1px 1px 2px black;
+}

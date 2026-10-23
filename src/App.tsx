@@ -37,11 +37,11 @@ function App() {
                           handleStatus={setStatus}
                           handleScore={handleScore}/> : 
                           status === "won" ? 
-                          <div>
+                          <div className="main">
                            <h1>You Won</h1>
                            <button onClick={() => handleRestart()}>Restart</button>
                          </div> :
-                          <div>
+                          <div className="main">
                            <h1>Game Over</h1>
                            <button onClick={() => handleRestart()}>Restart</button>
                          </div>

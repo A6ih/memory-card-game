@@ -2,10 +2,11 @@ import Card from "./Card";
 import { useState } from "react";
 import type { ResultProps } from "../App";
 import type { Result } from "../helpers/apiFunctions";
-import "../styles/card-container.css"
 import shuffleData from "../helpers/shuffleData";
 import shortenDataArr from "../helpers/shortenDataArr";
 import CardTracker from "./CardTracker";
+import "../styles/card-container.css"
+import "../styles/loader.css"
 
 type CardsContainerProps = {
                             data :ResultProps,
@@ -15,8 +16,13 @@ type CardsContainerProps = {
 
 export default function CardsContainer({data, handleStatus, handleScore}: CardsContainerProps) {
     const [clickedCards, setClickedCards] = useState(new Set<string>())
-    console.log(clickedCards)
-    if(!data) return <div className="loading">...Loading</div>
+    
+    if(!data) return (
+        <div className="main">
+          <div className="loader"></div>
+        </div>
+    )
+
     if(clickedCards.size > 9) handleStatus("won")
 
     const clickedCardsArr = data.filter(card => clickedCards.has(card.id))
@@ -25,7 +31,7 @@ export default function CardsContainer({data, handleStatus, handleScore}: CardsC
     const shuffledData: Result[] = shuffleData(shortenDataArr(clickedCardsArr, cardsArr))
 
     return (
-        <>
+        <div className="main">
          <div className="card-container">
             {shuffledData.map((card =>
                    <Card key={card.id}
@@ -39,6 +45,6 @@ export default function CardsContainer({data, handleStatus, handleScore}: CardsC
                  ))}
         </div>
         <CardTracker score={clickedCards.size}/>
-        </>
+        </div>
      )
 }

@@ -11,6 +11,6 @@
 }
 
 .card:hover {
-    box-shadow: 2px 2px 2px 2px red;
+    box-shadow: 2px 2px 2px 2px #d1861a;
     scale: 1.05;
 }
