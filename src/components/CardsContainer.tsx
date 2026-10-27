@@ -1,5 +1,5 @@
 import Card from "./Card";
-import { use, useState } from "react";
+import { useState } from "react";
 import type { ResultProps } from "../App";
 import type { Result } from "../helpers/apiFunctions";
 import shuffleData from "../helpers/shuffleData";
