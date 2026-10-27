@@ -1,5 +1,5 @@
 import Card from "./Card";
-import { useState } from "react";
+import { use, useState } from "react";
 import type { ResultProps } from "../App";
 import type { Result } from "../helpers/apiFunctions";
 import shuffleData from "../helpers/shuffleData";
@@ -16,6 +16,7 @@ type CardsContainerProps = {
 
 export default function CardsContainer({data, handleStatus, handleScore}: CardsContainerProps) {
     const [clickedCards, setClickedCards] = useState(new Set<string>())
+    const [isFlipped, setIsFlipped] = useState(false)
     
     if(!data) return (
         <div className="main">
@@ -27,6 +28,7 @@ export default function CardsContainer({data, handleStatus, handleScore}: CardsC
 
     const clickedCardsArr = data.filter(card => clickedCards.has(card.id))
     const cardsArr = clickedCards.size <=2 ? data : data.filter(card => !clickedCards.has(card.id))
+    const handleCardFlip = (value: boolean) => setIsFlipped(value)
 
     const shuffledData: Result[] = shuffleData(shortenDataArr(clickedCardsArr, cardsArr))
 
@@ -41,7 +43,9 @@ export default function CardsContainer({data, handleStatus, handleScore}: CardsC
                          handleStatus={handleStatus}
                          handleClickedCards={setClickedCards}
                          clickedCards={clickedCards}
-                         handleScore={handleScore}/>
+                         handleScore={handleScore}
+                         isFlipped={isFlipped}
+                         handleCardFlip={handleCardFlip}/>
                  ))}
         </div>
         <CardTracker score={clickedCards.size}/>

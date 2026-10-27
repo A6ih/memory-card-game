@@ -1,6 +1,11 @@
-export default function handleCardClick(id: string, set: Set<string>, fn: (value: Set<string>) => void, fn2: (value:string) => void, fn3: () => void) {
+export default function handleCardClick(id: string, set: Set<string>,
+                                        fn: (value: Set<string>,) => void,
+                                        fn2: (value:string) => void, fn3: () => void,
+                                        fn4: (value: boolean) => void) {
     console.log("handle click" + id)
     if(set.has(id)) fn2("lost")
     fn(new Set([...set, id]))
     fn3()
+    fn4(true)
+    setTimeout(() => fn4(false), 1000)
 }

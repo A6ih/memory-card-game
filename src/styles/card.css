@@ -1,4 +1,4 @@
-.card {
+ .card, .card-front, .card-back {
     --standard-width: 215px;
     --standard-height: 336px;
     /*min w x h maybe */
@@ -10,7 +10,41 @@
     max-height: var(--standard-height);
 }
 
-.card:hover {
+.card {
+    position: relative;
+    perspective: 1000px;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+.card.is-flipped {
+    transform: rotateY( 180deg );
+}
+
+.card.not-flipped {
+    transform: rotateY( 360deg );
+}
+
+.card-front, .card-back {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    backface-visibility: hidden;
+}
+
+.card-back {
+    transform: rotateY( 180deg );
+}
+
+.card-front:hover, .card-back:hover {
     box-shadow: 2px 2px 2px 2px #d1861a;
     scale: 1.05;
+}
+
+@media (max-width: 600px) {
+    .card, .card-front, .card-back {
+        max-width: 160px;
+        max-height: 246px;
+    }
 }

@@ -1,5 +1,6 @@
 import "../styles/card.css"
 import handleCardClick from "../helpers/handleCardClick"
+import cardBack from "../assets/PalworldOCG_Card_Back.webp"
 
 type CardProps = {
     name: string,
@@ -8,7 +9,9 @@ type CardProps = {
     handleStatus: (value:string) => void,
     handleClickedCards: (value: Set<string>) => void,
     clickedCards: Set<string>,
-    handleScore: () => void
+    handleScore: () => void,
+    isFlipped: boolean,
+    handleCardFlip: (value: boolean) => void,
 }
 
 export default function Card({name,
@@ -17,15 +20,21 @@ export default function Card({name,
                               handleStatus,
                               handleClickedCards,
                               clickedCards,
-                              handleScore} : CardProps) {
+                              handleScore,
+                              isFlipped,
+                              handleCardFlip} : CardProps) {
     return (
-        <img src={imgUrl}
+        <div className={`card ${isFlipped? "is-flipped" : "not-flipped"}`}>
+            <img src={imgUrl}
              alt={name}
-             className={`card`}
+             className={`card-front`}
              onClick={() => handleCardClick(id,
                                             clickedCards,
                                             handleClickedCards,
                                             handleStatus,
-                                            handleScore)} />
+                                            handleScore,
+                                            handleCardFlip)} />
+            <img src={cardBack} alt="card-back" className="card-back"/>
+        </div>
     )
 }

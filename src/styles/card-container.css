@@ -24,3 +24,9 @@
     padding: 6px;
     border-radius: 3px;
 }
+
+@media (max-width: 600px) {
+    .card-container {
+        justify-content: center;
+    }
+}
